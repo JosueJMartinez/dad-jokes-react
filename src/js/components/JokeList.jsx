@@ -18,28 +18,32 @@ export default class JokeList extends Component {
 		let jokeFunc = id => {
 			return this.state.jokes.some(c => c.id === id);
 		};
+		try{
+			for (let i = 0; i < 10; i++) {
+				do {
 
-		for (let i = 0; i < 10; i++) {
-			do {
-				try {
-					res = await Axios.get('https://icanhazdadjoke.com/', {
-						headers: { accept: 'application/json' }
-					});
-					if (res.data === undefined)
-						throw new Error('failed retrieving data');
-					// jokeFunc
-					foundJoke = jokeFunc(res.data.id);
-				} catch (err) {
-					console.log('erroro here');
-				}
-			} while (foundJoke);
+						res = await Axios.get('https://icanhazdadjoke.com/', {
+							headers: { accept: 'application/json' }
+						});
+						if (res.data === undefined)
+							throw new Error('failed retrieving data');
+						// jokeFunc
+						foundJoke = jokeFunc(res.data.id);
 
-			this.setState(prevState => {
-				return {
-					jokes: [ ...prevState.jokes, { ...res.data, rating: 0 } ]
-				};
-			});
+
+
+				} while (foundJoke);
+
+				this.setState(prevState => {
+					return {
+						jokes: [ ...prevState.jokes, { ...res.data, rating: 0 } ]
+					};
+				});
+			}	
+		}catch(err){
+			console.log('erroro here');
 		}
+		
 	};
 
 	handleClick = e => {
