@@ -1,11 +1,11 @@
 import React from 'react';
 import '../css/App.css';
-import JokeChart from './components/JokeChart';
+import JokeList from './components/JokeList';
 
 function App() {
 	return (
 		<div className="App">
-			<JokeChart />
+			<JokeList />
 		</div>
 	);
 }
