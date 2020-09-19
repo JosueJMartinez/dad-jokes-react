@@ -1,4 +1,18 @@
+.JokeList {
+	margin: auto;
+}
+.JokeList-box { 
+	height: 400px;
+	width: 540px; 
+	display: table;
+	margin: auto;
+} 
+
 .JokeList-list {
 	display: inline;
 	width: 30%;
+}
+
+.JokeList-button{
+	display: inline;
 }

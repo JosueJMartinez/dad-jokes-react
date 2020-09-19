@@ -4,7 +4,8 @@ import '../../css/JokeList.css';
 
 export default class JokeList extends Component {
 	state = {
-		jokes: []
+		jokes: [],
+		isLoading: true
 	};
 
 	async componentDidMount() {
@@ -52,21 +53,24 @@ export default class JokeList extends Component {
 
 	render() {
 		return (
-			<div className="JokeList">
-				<div className="JokeList-button">
-					<button onClick={this.handleClick}>New Jokes</button>
-				</div>
-				<div className="JokeList-list">
-					<ul>
-						{this.state.jokes.map(joke => (
-							<li key={joke.id} id={joke.id}>
-								{' '}
-								{joke.joke} {joke.rating}
-							</li>
-						))}
-					</ul>
+			<div className='JokeList'>
+				<div className="JokeList-box">
+					<div className="JokeList-button">
+						<button onClick={this.handleClick}>New Jokes</button>
+					</div>
+					<div className="JokeList-list">
+						<ul>
+							{this.state.jokes.map(joke => (
+								<li key={joke.id} id={joke.id}>
+									{' '}
+									{joke.joke} {joke.rating}
+								</li>
+							))}
+						</ul>
+					</div>
 				</div>
 			</div>
+			
 		);
 	}
 }
