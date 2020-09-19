@@ -1,11 +1,12 @@
 .JokeList {
-	margin: auto;
+	margin:auto;
 }
 .JokeList-box { 
-	height: 400px;
-	width: 540px; 
-	display: table;
+	width:540px; 
+	display:table;
 	margin: auto;
+	
+	
 } 
 
 .JokeList-list {
@@ -14,5 +15,5 @@
 }
 
 .JokeList-button{
-	display: inline;
+	display:inline;
 }
