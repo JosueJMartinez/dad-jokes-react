@@ -37,9 +37,13 @@ export default class Joke extends Component {
 		return (
 			<div id={id}>
 				<div className="Joke-buttons">
-					<button onClick={this.handleClick}>+</button>
+					<button onClick={this.handleClick}>
+						<i className="fas fa-arrow-up" />
+					</button>
 					{rating}
-					<button onClick={this.handleClick}>-</button>
+					<button onClick={this.handleClick}>
+						<i className="fas fa-arrow-down" />
+					</button>
 				</div>
 
 				{joke}
