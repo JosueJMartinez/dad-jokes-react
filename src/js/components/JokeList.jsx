@@ -32,25 +32,21 @@ export default class JokeList extends Component {
 	}
 
 	getJokes = async () => {
-		let res = {};
-		let foundJoke = false;
-		const jokes = [];
-
-		let jokeFunc = id => {
-			if (!this.seenJokes.has(id)) {
-				this.seenJokes.add(id);
-				return false;
-			}
-			return true;
-			// return (
-			// 	this.state.jokes.some(c => c.id === id) ||
-			// 	jokes.some(c => c.id === id)
-			// );
-		};
-
-		this.setState({ isLoading: true });
-
 		try {
+			let res = {};
+			let foundJoke = false;
+			const jokes = [];
+
+			let jokeFunc = id => {
+				if (!this.seenJokes.has(id)) {
+					this.seenJokes.add(id);
+					return false;
+				}
+				return true;
+			};
+
+			this.setState({ isLoading: true });
+
 			while (jokes.length < this.props.numJokesToGet) {
 				res = await Axios.get('https://icanhazdadjoke.com/', {
 					headers: { accept: 'application/json' }
@@ -64,16 +60,17 @@ export default class JokeList extends Component {
 					jokes.push({ ...res.data, rating: 0 });
 				}
 			}
+
+			this.setState(prevState => {
+				return {
+					jokes: [ ...prevState.jokes, ...jokes ],
+					isLoading: false
+				};
+			});
 		} catch (err) {
 			console.log('erroro here');
+			this.setState({ isLoading: false });
 		}
-
-		this.setState(prevState => {
-			return {
-				jokes: [ ...prevState.jokes, ...jokes ],
-				isLoading: false
-			};
-		});
 	};
 
 	handleClick = e => {
@@ -110,10 +107,7 @@ export default class JokeList extends Component {
 						</div>
 					) : (
 						this.state.jokes
-							.sort((joke1, joke2) => {
-								if (joke1.rating > joke2.rating) return -1;
-								return 1;
-							})
+							.sort((joke1, joke2) => joke2.rating - joke1.rating)
 							.map(joke => (
 								<Joke
 									key={joke.id}
