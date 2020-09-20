@@ -59,6 +59,15 @@ export default class JokeList extends Component {
 		this.getJokes();
 	};
 
+	editRating = j => {
+		this.setState({
+			jokes: this.state.jokes.map(joke => {
+				if (j.id === joke.id) return j;
+				return joke;
+			})
+		});
+	};
+
 	render() {
 		return (
 			<div className="JokeList">
@@ -76,9 +85,18 @@ export default class JokeList extends Component {
 					{this.state.isLoading ? (
 						'loading'
 					) : (
-						this.state.jokes.map(joke => (
-							<Joke key={joke.id} joke={joke} />
-						))
+						this.state.jokes
+							.sort((joke1, joke2) => {
+								if (joke1.rating > joke2.rating) return -1;
+								return 1;
+							})
+							.map(joke => (
+								<Joke
+									key={joke.id}
+									joke={joke}
+									editRating={this.editRating}
+								/>
+							))
 					)}
 				</div>
 			</div>
