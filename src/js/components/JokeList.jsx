@@ -13,8 +13,15 @@ export default class JokeList extends Component {
 		isLoading: true
 	};
 
-	async componentDidMount() {
-		this.getJokes();
+	componentDidMount() {
+		const jokes = JSON.parse(localStorage.getItem('DadJokes'));
+		jokes
+			? this.setState({ jokes: jokes, isLoading: false })
+			: this.getJokes();
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		localStorage.setItem('DadJokes', JSON.stringify(this.state.jokes));
 	}
 
 	getJokes = async () => {

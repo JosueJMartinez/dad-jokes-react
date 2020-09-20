@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import '../../css/Joke.css';
 
 export default class Joke extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	handleClick = e => {
 		this.setRating(e.target.className);
 	};
