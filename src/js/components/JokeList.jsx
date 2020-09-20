@@ -35,7 +35,9 @@ export default class JokeList extends Component {
 				jokes.some(c => c.id === id)
 			);
 		};
+
 		this.setState({ isLoading: true });
+
 		try {
 			while (jokes.length < this.props.numJokesToGet) {
 				res = await Axios.get('https://icanhazdadjoke.com/', {
@@ -53,13 +55,13 @@ export default class JokeList extends Component {
 		} catch (err) {
 			console.log('erroro here');
 		}
+
 		this.setState(prevState => {
 			return {
 				jokes: [ ...prevState.jokes, ...jokes ],
 				isLoading: false
 			};
 		});
-		// this.setState({ isLoading: false });
 	};
 
 	handleClick = e => {
@@ -90,7 +92,10 @@ export default class JokeList extends Component {
 				</div>
 				<div className="JokeList-jokes">
 					{this.state.isLoading ? (
-						'loading'
+						<div className="JokeList-spinner">
+							<i className="far fa-8x fa-laugh fa-spin" />
+							<h1 className="JokeList-title">Loading...</h1>
+						</div>
 					) : (
 						this.state.jokes
 							.sort((joke1, joke2) => {
