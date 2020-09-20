@@ -13,10 +13,17 @@ export default class JokeList extends Component {
 		isLoading: true
 	};
 
+	constructor(props) {
+		super(props);
+		this.seenJokes = new Set();
+	}
+
 	componentDidMount() {
 		const jokes = JSON.parse(localStorage.getItem('DadJokes'));
 		jokes
-			? this.setState({ jokes: jokes, isLoading: false })
+			? this.setState({ jokes: jokes, isLoading: false }, () => {
+					this.seenJokes = new Set(this.state.jokes.map(j => j.id));
+				})
 			: this.getJokes();
 	}
 
@@ -30,10 +37,15 @@ export default class JokeList extends Component {
 		const jokes = [];
 
 		let jokeFunc = id => {
-			return (
-				this.state.jokes.some(c => c.id === id) ||
-				jokes.some(c => c.id === id)
-			);
+			if (!this.seenJokes.has(id)) {
+				this.seenJokes.add(id);
+				return false;
+			}
+			return true;
+			// return (
+			// 	this.state.jokes.some(c => c.id === id) ||
+			// 	jokes.some(c => c.id === id)
+			// );
 		};
 
 		this.setState({ isLoading: true });
