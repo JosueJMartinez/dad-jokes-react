@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import '../../css/JokeList.css';
+import Joke from './Joke';
 
 export default class JokeList extends Component {
 	static defaultProps = {
@@ -61,25 +62,24 @@ export default class JokeList extends Component {
 	render() {
 		return (
 			<div className="JokeList">
-				<div className="JokeList-box">
-					<div className="JokeList-button">
-						<button onClick={this.handleClick}>New Jokes</button>
-					</div>
-					<div className="JokeList-list">
-						<h1>Dad Jokes</h1>
-						{this.state.isLoading ? (
-							'loading'
-						) : (
-							<ul>
-								{this.state.jokes.map(joke => (
-									<li key={joke.id} id={joke.id}>
-										{' '}
-										{joke.joke} {joke.rating}
-									</li>
-								))}
-							</ul>
-						)}
-					</div>
+				<div className="JokeList-sidebar">
+					<h1 className="JokeList-title">
+						Dad <span>Jokes</span>
+					</h1>
+					<img
+						src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg"
+						alt="laughing face"
+					/>
+					<button onClick={this.handleClick}>New Jokes</button>
+				</div>
+				<div className="JokeList-jokes">
+					{this.state.isLoading ? (
+						'loading'
+					) : (
+						this.state.jokes.map(joke => (
+							<Joke key={joke.id} joke={joke} />
+						))
+					)}
 				</div>
 			</div>
 		);
