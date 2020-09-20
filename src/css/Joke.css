@@ -1,0 +1,16 @@
+.Joke {
+	background-color: #add8e6;
+	border: 1px solid black;
+}
+
+.Joke-buttons {
+	display: inline;
+}
+
+.Joke-content {
+	margin-left: 10px;
+}
+
+.Joke-mood {
+	margin-left: 10px;
+}

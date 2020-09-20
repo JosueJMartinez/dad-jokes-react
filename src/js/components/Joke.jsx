@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import '../../css/Joke.css';
 
 export default class Joke extends Component {
 	handleClick = e => {
-		this.setRating(e.target.innerText);
+		this.setRating(e.target.className);
 	};
 
 	setRating = direction => {
 		let rating = this.props.joke.rating;
-		if (direction === '+')
+		if (direction === 'fas fa-arrow-up')
 			this.props.editRating({
 				...this.props.joke,
 				rating: ++rating
@@ -35,19 +36,15 @@ export default class Joke extends Component {
 	render() {
 		const { id, joke, rating } = this.props.joke;
 		return (
-			<div id={id}>
+			<div className="Joke" id={id}>
 				<div className="Joke-buttons">
-					<button onClick={this.handleClick}>
-						<i className="fas fa-arrow-up" />
-					</button>
-					{rating}
-					<button onClick={this.handleClick}>
-						<i className="fas fa-arrow-down" />
-					</button>
+					<i onClick={this.handleClick} className="fas fa-arrow-up" />
+					<span>{rating}</span>
+					<i onClick={this.handleClick} className="fas fa-arrow-down" />
 				</div>
 
-				{joke}
-				{this.handleMood()}
+				<span className="Joke-content">{joke}</span>
+				<span className="Joke-mood">{this.handleMood()}</span>
 			</div>
 		);
 	}
