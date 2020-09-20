@@ -60,3 +60,76 @@
 	height: 100%;
 	font-size: 3rem;
 }
+
+.JokeList-sidebar button {
+	color: white;
+	padding: 1rem 2rem;
+	margin: 2rem;
+	font-size: 1.5rem;
+	font-weight: 700;
+	width: 50%;
+	border: solid 2px;
+	border-radius: 2rem;
+	outline: none;
+	cursor: pointer;
+	transition: 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+	background: -webkit-linear-gradient(135deg, #ff6464 40%, #5ac8fa 40%);
+	background: -o-linear-gradient(135deg, #ff6464 40%, #5ac8fa 40%);
+	background: -moz-linear-gradient(135deg, #ff6464 40%, #5ac8fa 40%);
+	background: linear-gradient(135deg, #ff6464 40%, #5ac8fa 40%);
+	-webkit-box-shadow: 0px 19px 38px #000000,
+		inset 0px 0px 15px 5px rgba(0, 0, 0, 0);
+	box-shadow: 0px 19px 38px #000000,
+		inset 0px 0px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.JokeList-sidebar button:hover {
+	transform: translateY(-2px);
+	-webkit-box-shadow: 0px 15px 30px #000000a4,
+		inset 0px 0px 15px 5px rgba(0, 0, 0, 0);
+	box-shadow: 0px 15px 30px #000000a4,
+		inset 0px 0px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.JokeList-sidebar img:hover {
+	animation: shake 0.5s;
+	animation-duration: 5s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0s;
+}
+
+@keyframes shake {
+	0% {
+		transform: translate(1px, 1px) rotate(0deg);
+	}
+	10% {
+		transform: translate(-1px, -2px) rotate(-1deg);
+	}
+	20% {
+		transform: translate(-3px, 0px) rotate(1deg);
+	}
+	30% {
+		transform: translate(3px, 2px) rotate(0deg);
+	}
+	40% {
+		transform: translate(1px, -1px) rotate(1deg);
+	}
+	50% {
+		transform: translate(-1px, 2px) rotate(-1deg);
+	}
+	60% {
+		transform: translate(-3px, 1px) rotate(0deg);
+	}
+	70% {
+		transform: translate(3px, 1px) rotate(-1deg);
+	}
+	80% {
+		transform: translate(-1px, -1px) rotate(1deg);
+	}
+	90% {
+		transform: translate(1px, 2px) rotate(0deg);
+	}
+	100% {
+		transform: translate(1px, -2px) rotate(-1deg);
+	}
+}
